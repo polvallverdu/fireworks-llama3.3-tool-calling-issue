@@ -4,7 +4,11 @@ import { ChatFireworks } from "@langchain/community/chat_models/fireworks";
 import { z } from "zod";
 
 // Get your Fireworks API key
-const FIREWORKS_API_KEY = "fw_3ZPxWFRZdH8JUeVmJ47vkydY";
+const FIREWORKS_API_KEY = process.env.FIREWORKS_API_KEY;
+
+if (!FIREWORKS_API_KEY) {
+  throw new Error("FIREWORKS_API_KEY is not set");
+}
 
 const weatherTool = new DynamicStructuredTool({
   name: "get_weather",
