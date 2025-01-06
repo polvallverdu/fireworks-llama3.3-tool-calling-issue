@@ -3,7 +3,6 @@ import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { ChatFireworks } from "@langchain/community/chat_models/fireworks";
 import { z } from "zod";
 
-// Get your Fireworks API key
 const FIREWORKS_API_KEY = process.env.FIREWORKS_API_KEY;
 
 if (!FIREWORKS_API_KEY) {
@@ -37,8 +36,6 @@ async function main() {
     temperature: 0.7,
   }).bindTools([weatherTool]);
 
-  // Create the agent with the weather tool
-
   const messages = [
     new SystemMessage(
       "You are a helpful assistant that can get the weather for a city using it's tools."
@@ -46,7 +43,6 @@ async function main() {
     new HumanMessage("What's the weather like in London?"),
   ];
 
-  // Example usage
   try {
     const result = await model.invoke(messages);
     console.log("Result:", result);
